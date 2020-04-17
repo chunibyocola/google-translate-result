@@ -1,0 +1,26 @@
+{
+  "name": "google-translate-result",
+  "version": "1.0.5",
+  "description": "A simple translate API for Google Translate.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "google",
+    "translate",
+    "translator",
+    "api",
+    "extension"
+  ],
+  "author": {
+    "name": "sweetcola"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {}
+}
