@@ -1,12 +1,16 @@
 {
   "name": "google-translate-result",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A simple translate API for Google Translate.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chunibyocola/google-translate-result.git"
   },
   "keywords": [
     "google",
@@ -22,5 +26,8 @@
   "dependencies": {
     "typescript": "^3.8.3"
   },
-  "devDependencies": {}
+  "bugs": {
+    "url": "https://github.com/chunibyocola/google-translate-result/issues"
+  },
+  "homepage": "https://github.com/chunibyocola/google-translate-result"
 }
