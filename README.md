@@ -1,5 +1,5 @@
 # google-translate-result
-A simple translate API for Google Translate.
+A simple translate API for Google Translate. Exports translate, audio and detect.
 ## Install
 ```
 npm i google-translate-result
@@ -31,31 +31,37 @@ Translate params:
     * should be a string
     */ 
     text,
+
     /*
     * translate from
     * should ba a language code like 'en', 'zh-CN', etc.
     */
     from = '', 
+
     /*
     * translate to
     * should be a language code like 'en', 'zh-CN', etc.
     */
     to = '',
+
     /*
     * url: `https://translate.google.${com ? 'com' : 'cn'}`
     */
     com = true,
+
     /*
+    * should be 'navigator.language'
+    * userLang: userLang || 'en'
     * &hl=`${userLang || to}`
     */
     userLang = '',
+
     /*
-    * if you didn't set a value of 'from'
+    * if you didn't set 'from'
     * translate will auto detect the text, to give a better performance
     * but it will take about two times of time to get the result
     * if you don't want the auto detect
-    * you can set it a false
-    * but you should set the param of 'from'
+    * you can set it false
     */
     autoDetect = true
 }
@@ -64,11 +70,11 @@ Audio:
 ```javascript
 import google from 'google-translate-result';
 
-google.audio('Hello world!').then(result => console.log(result));
+google.audio({text: 'Hello world!'}).then(result => console.log(result));
 
 /*
     => [
-        "https://translate.google.cn/translate_tts?client=w…l=en&textlen=12&tk=315239.161091&q=Hello%20world!"
+        "https://translate.google.cn/translate_tts?client=webapp&ie=UTF-8&prev=input&total=1&idx=0&tl=en&textlen=12&tk=964336.527511&q=Hello%20world!"
     ]
 
     return array is
@@ -87,6 +93,30 @@ Audio params:
     com = true
 }
 ```
+You can play audio like it in the chrome extension background:
+```javascript
+const audioPlayer = new Audio();
+let index = 0;
+let audioSrcList = [];
+
+audioPlayer.addEventListener('ended', () => {
+    if (index < audioSrcList.length) {
+        audioPlayer.src = audioSrcList[index];
+        audioPlayer.play();
+        ++index;
+    }
+});
+
+const playAudio = (srcList) => {
+    if (1 > srcList.length) return;
+
+    audioSrcList = srcList;
+    index = 1;
+
+    audioPlayer.src = srcList[0];
+    audioPlayer.play();
+}
+```
 Detect:
 ```javascript
 import google from 'google-translate-result';
@@ -99,13 +129,13 @@ google.detect('你好').then(result => console.log(result));
 ```
 Detect params:
 ```javascript
-{
+(
     /*
     * the meaning is the same as translate's params
     */
     text,
     com = true
-}
+)
 ```
 You can catch the error of every function, catch like it:
 ```javascript
