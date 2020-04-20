@@ -1,6 +1,6 @@
 {
   "name": "google-translate-result",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A simple translate API for Google Translate.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
