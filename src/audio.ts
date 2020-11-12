@@ -1,29 +1,23 @@
 import { getQueryString, isLangCodeSupported, getError } from './utils';
 import { LANGUAGE_NOT_SOPPORTED } from './errorCodes';
 import { detect } from './detect';
-import getTk from './getTk';
 
-export const audio = async ({text, from = '', com = true}: {text: string, from?: string, com?: boolean}) => {
+export const audio = async ({ text, from = '' }: { text: string, from?: string }) => {
     if (!text) { return; }
 
-    from = from || await detect(text, com);
+    from = from || await detect(text);
 
     if (!isLangCodeSupported(from)) { throw getError(LANGUAGE_NOT_SOPPORTED); }
 
-    let url = `https://translate.google.${com ? 'com' : 'cn'}/translate_tts`;
+    let url = `https://translate.googleapis.com/translate_tts`;
 
     let arr = getTextArray(text);
 
     for (let i = 0; i < arr.length; ++i) {
         const params = {
-            client: 'webapp',
+            client: 'gtx',
             ie: 'UTF-8',
-            prev: 'input',
-            total: 1,
-            idx: 0,
             tl: from,
-            textlen: arr[i].length,
-            tk: await getTk(arr[i], com),
             q: encodeURIComponent(arr[i])
         };
 

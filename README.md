@@ -45,11 +45,6 @@ Translate params:
     to = '',
 
     /*
-    * url: `https://translate.google.${com ? 'com' : 'cn'}`
-    */
-    com = true,
-
-    /*
     * should be 'navigator.language'
     * userLang: userLang || 'en'
     * &hl=`${userLang || to}`
@@ -89,8 +84,7 @@ Audio params:
     * Notice: it must auto detect if you don't set 'from'
     */
     text,
-    from = '',
-    com = true
+    from = ''
 }
 ```
 You can play audio like it in the chrome extension background:
@@ -133,8 +127,7 @@ Detect params:
     /*
     * the meaning is the same as translate's params
     */
-    text,
-    com = true
+    text
 )
 ```
 You can catch the error of every function, catch like it:
